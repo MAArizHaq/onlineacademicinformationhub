@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="user/userHeader :: header"/>
+
+<div class="container-fluid">
+
+    <div role="alert" th:if="${message}" th:class="${'alert alert-dismissible fade show ' + alertClass}">
+        <strong th:text="${message}"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row mt-4 mb-4">
+    </div>
+    <div class="row">
+        <div class="col col-md-12">
+            <table class="table table-striped">
+                <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th th:text="${university1.universityName}"></th>
+                    <th th:text="${university2.universityName}"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Location</th>
+                    <td th:text="${university1.location}"></td>
+                    <td th:text="${university2.location}"></td>
+                </tr>
+                <tr>
+                    <th>Average Fees</th>
+                    <td th:text="${university1.averageFees}"></td>
+                    <td th:text="${university2.averageFees}"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td th:text="${university1.status}"></td>
+                    <td th:text="${university2.status}"></td>
+                </tr>
+                <tr>
+                    <th>Total Student</th>
+                    <td th:text="${university1.totalStudent}"></td>
+                    <td th:text="${university2.totalStudent}"></td>
+                </tr>
+                <tr>
+                    <th>International Students</th>
+                    <td th:text="${university1.internationalStudents}"></td>
+                    <td th:text="${university2.internationalStudents}"></td>
+                </tr>
+                <tr>
+                    <th>Employability</th>
+                    <td th:text="${university1.employability}"></td>
+                    <td th:text="${university2.employability}"></td>
+                </tr>
+                <tr>
+                    <th>Academic Staff</th>
+                    <td th:text="${university1.academicStaff}"></td>
+                    <td th:text="${university2.academicStaff}"></td>
+                </tr>
+                <tr>
+                    <th>Administrative Staff</th>
+                    <td th:text="${university1.administrativeStaff}"></td>
+                    <td th:text="${university2.administrativeStaff}"></td>
+                </tr>
+                <tr>
+                    <th>Undergraduates</th>
+                    <td th:text="${university1.undergraduates}"></td>
+                    <td th:text="${university2.undergraduates}"></td>
+                </tr>
+                <tr>
+                    <th>Postgraduates</th>
+                    <td th:text="${university1.postgraduates}"></td>
+                    <td th:text="${university2.postgraduates}"></td>
+                </tr>
+                <tr>
+                    <th>Research</th>
+                    <td th:text="${university1.research}"></td>
+                    <td th:text="${university2.research}"></td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td th:text="${university1.age}"></td>
+                    <td th:text="${university2.age}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--<th:block th:replace="fragments/footer :: footer"/>-->
+
+</body>
+</html>

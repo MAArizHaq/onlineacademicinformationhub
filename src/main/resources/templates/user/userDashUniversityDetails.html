@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+
+    <title>Title</title>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("SelectUniversity").value;
+            document.getElementById("universityId").value = x;
+        }
+    </script>
+</head>
+<body>
+<th:block th:replace="user/userHeader :: header"/>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3" th:text="${university.universityName}"></h1>
+        <h4 class="lead ml-2 mb-4" th:text="${university.location}"></h4>
+        <div class="row justify-content-between">
+            <div class="col-md-4 mb-3">
+                <a th:href="@{/user/findForDepartment/__${university.universityId}__}" class="btn btn-info" role="button">View Details Department Information</a>
+            </div>
+            <div class="col-md-5">
+                <form th:action="@{/user/compareUniversity}" method="POST">
+                    <div class="row justify-content-end">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <select class="form-control" id="SelectUniversity" onchange="myFunction()">
+                                    <option disabled="disabled" selected="selected" > -- select University to Compare: --</option>
+                                    <option th:each="university : ${universities}"
+                                            th:value="${university.universityId}"
+                                            th:text="${university.universityName}"></option>
+                                </select>
+                                <input type="text" hidden="true" readonly="true" class="form-control" id="universityId" name="universityId" placeholder="Your University Id" th:field="${compareUni.universityId}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-info">Compare</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div role="alert" th:if="${message}" th:class="${'alert alert-dismissible fade show ' + alertClass}">
+        <strong th:text="${message}"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row border-bottom mb-5">
+        <div class="col col-md-6">
+            <p class="mb-0 pb-0">Status</p>
+            <h2 th:text="${university.status}"></h2>
+        </div>
+        <div class="col col-md-6">
+            <p class="mb-0 pb-0">Total Student</p>
+            <h2 th:text="${university.totalStudent}"></h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-md-12">
+            <h2>About</h2>
+            <p th:text="${university.about}"></p>
+        </div>
+    </div>
+
+    <div class="row border-top mt-5 mb-5">
+        <div class="col col-md-3">
+            <p class="mb-0 pb-0">Undergraduates</p>
+            <h2 th:text="${university.undergraduates}"></h2>
+        </div>
+        <div class="col col-md-3">
+            <p class="mb-0 pb-0">Postgraduates</p>
+            <h2 th:text="${university.postgraduates}"></h2>
+        </div>
+        <div class="col col-md-3">
+            <p class="mb-0 pb-0">AcademicStaff</p>
+            <h2 th:text="${university.academicStaff}"></h2>
+        </div>
+        <div class="col col-md-3">
+            <p class="mb-0 pb-0">AdministrativeStaff</p>
+            <h2 th:text="${university.administrativeStaff}"></h2>
+        </div>
+    </div>
+
+</div>
+
+<!--<th:block th:replace="fragments/footer :: footer"/>-->
+
+</body>
+</html>

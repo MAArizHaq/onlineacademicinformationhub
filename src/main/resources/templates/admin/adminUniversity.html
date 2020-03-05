@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>-->
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="admin/adminHeader :: header"/>
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col col-md-12 col-sm-12 col-12 mb-4">
+            <form th:action="@{/university/saveUniversity}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="universityId">University Id: </label>
+                    <input type="text" readonly="true" class="form-control" id="universityId" name="universityId" placeholder="University Id" th:field="${newUniversity.universityId}" autofocus="autofocus">
+                </div>
+                <div class="form-group">
+                    <label for="universityName">University Name: </label>
+                    <input type="text" class="form-control" id="universityName" name="universityName" placeholder="University Name" th:field="${newUniversity.universityName}">
+                </div>
+                <div class="form-group">
+                    <label for="file">File: </label>
+                    <input type="file" class="form-control" id="file" name="file" >
+                </div>
+                <div class="form-group">
+                    <label for="status">Status: </label>
+                    <select class="form-control" th:value="${newUniversity.status}" name="status" id="status">
+                        <option disabled="disabled" th:selected="selected" > -- select Status --</option>
+                        <option th:selected="${newUniversity.status == 'Public'}">Public</option>
+                        <option th:selected="${newUniversity.status == 'Private'}">Private</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location: </label>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Location" th:field="${newUniversity.location}">
+                </div>
+                <div class="form-group">
+                    <label for="averageFees">Average Fees: </label>
+                    <input type="text" class="form-control" id="averageFees" name="averageFees" placeholder="Average Fees" th:field="${newUniversity.averageFees}">
+                </div>
+                <div class="form-group">
+                    <label for="totalStudent">Total Student: </label>
+                    <input type="text" class="form-control" id="totalStudent" name="totalStudent" placeholder="Total Student" th:field="${newUniversity.totalStudent}">
+                </div>
+                <div class="form-group">
+                    <label for="internationalStudents">International Students: </label>
+                    <input type="text" class="form-control" id="internationalStudents" name="internationalStudents" placeholder="International Students" th:field="${newUniversity.internationalStudents}">
+                </div>
+                <div class="form-group">
+                    <label for="employability">Employability: </label>
+                    <input type="text" class="form-control" id="employability" name="employability" placeholder="Employability" th:field="${newUniversity.employability}">
+                </div>
+                <div class="form-group">
+                    <label for="shortNote">Short Note: </label>
+                    <input type="text" class="form-control" id="shortNote" name="shortNote" placeholder="Short Note" th:field="${newUniversity.shortNote}">
+                </div>
+                <div class="form-group">
+                    <label for="about">About: </label>
+                    <textarea class="form-control" rows="5" id="about" name="about" th:field="${newUniversity.about}">About</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="academicStaff">Academic Staff: </label>
+                    <input type="text" class="form-control" id="academicStaff" name="academicStaff" placeholder="Academic Staff" th:field="${newUniversity.academicStaff}">
+                </div>
+                <div class="form-group">
+                    <label for="administrativeStaff">Administrative Staff: </label>
+                    <input type="text" class="form-control" id="administrativeStaff" name="administrativeStaff" placeholder="Administrative Staff" th:field="${newUniversity.administrativeStaff}">
+                </div>
+                <div class="form-group">
+                    <label for="undergraduates">Undergraduates: </label>
+                    <input type="text" class="form-control" id="undergraduates" name="undergraduates" placeholder="Undergraduates" th:field="${newUniversity.undergraduates}">
+                </div>
+                <div class="form-group">
+                    <label for="postgraduates">Postgraduates: </label>
+                    <input type="text" class="form-control" id="postgraduates" name="postgraduates" placeholder="Postgraduates" th:field="${newUniversity.postgraduates}">
+                </div>
+                <div class="form-group">
+                    <label for="research">Research: </label>
+                    <input type="text" class="form-control" id="research" name="research" placeholder="Research" th:field="${newUniversity.research}">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age: </label>
+                    <input type="text" class="form-control" id="age" name="age" placeholder="Age" th:field="${newUniversity.age}">
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                <a th:href="@{/university/universityPage}"class="btn btn-info btn-sm" role="button">New</a>
+            </form>
+        </div>
+        <div class="col col-md-12 col-sm-12 col-12 table-responsive">
+            <table id="example" class="table ">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">University Id</th>
+                    <th scope="col">University Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Average Fees</th>
+                    <th scope="col">Total Student</th>
+                    <th scope="col">International Students</th>
+                    <th scope="col">Employability</th>
+                    <th scope="col">Academic Staff</th>
+                    <th scope="col">Administrative Staff</th>
+                    <th scope="col">Undergraduates</th>
+                    <th scope="col">Postgraduates</th>
+                    <th scope="col">Research</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="university : ${universities}">
+                    <td th:text="${university.universityId}">1</td>
+                    <td th:text="${university.universityName}">2</td>
+                    <td th:text="${university.status}">3</td>
+                    <td><img th:src="@{/user/universityImageDisplay/__${university.universityId}__}" alt="image" height="42" width="42"/></td>
+                    <td th:text="${university.location}">4</td>
+                    <td th:text="${university.averageFees}">4</td>
+                    <td th:text="${university.totalStudent}">5</td>
+                    <td th:text="${university.internationalStudents}">5</td>
+                    <td th:text="${university.employability}">5</td>
+                    <td th:text="${university.academicStaff}">7</td>
+                    <td th:text="${university.administrativeStaff}">8</td>
+                    <td th:text="${university.undergraduates}">9</td>
+        z            <td th:text="${university.postgraduates}">10</td>
+                    <td th:text="${university.research}">10</td>
+                    <td th:text="${university.age}">10</td>
+                    <td><a th:href="@{/university/findForEditUniversity/__${university.universityId}__}"class="btn btn-info btn-sm" role="button">Edit</a></td>
+                    <td><a th:href="@{/university/deleteUniversity/__${university.universityId}__}" class="btn btn-danger btn-sm" role="button">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--<th:block th:replace="admin/adminFooter :: footer"/>-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#example').DataTable(
+            {
+                responsive:true
+            }
+        );
+    } );
+
+
+</script>
+</body>
+</html>

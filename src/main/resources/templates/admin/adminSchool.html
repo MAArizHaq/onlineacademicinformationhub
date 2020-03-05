@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th= "www.thymleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+    <title>Title</title>
+</head>
+<body>
+<!--<th:block th:replace="admin/adminHeader :: header"/>-->
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col col-md-12 col-sm-12 col-12 mb-4">
+            <!-- <form th:action="@{/university/saveUniversity}" method="post" enctype="multipart/form-data">-->
+            <form th:action="@{/school/saveschool}" method="post" role="form" id="schoolForm">
+               <!-- <div class="form-group">
+                    <label for="collegeId">University Id: </label>
+                    <input type="text" readonly="true" class="form-control" id="collegeId" name="collegeId" placeholder="University Id" th:field="${newCollege.collegeId}">
+                </div>-->
+                <div class="form-group">
+                    <label for="schoolName">School Name: </label>
+                    <input type="text" class="form-control" id="schoolName" name="schoolName"  placeholder="school Name"  th:field="${newschool.schoolName}" autofocus="true">
+                </div>
+            <div class="form-group">
+                <label for="location">Address: </label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="location"  th:field="${newschool.location}" autofocus="autofocus">
+            </div>
+                <div class="form-group">
+                    <label for="status">Status: </label>
+                    <input type="text" class="form-control" id="status" name="status" placeholder="status"  th:field="${newschool.status}">
+                </div>
+                <div class="form-group">
+                    <label for="totalStudent">Total students: </label>
+                    <input type="text" class="form-control" id="totalStudent" name="totalStudent" th:field="${newschool.totalStudent}" placeholder="totalStudent" >
+                </div>
+                <div class="form-group">
+                    <label for="result">Result: </label>
+                    <input type="text" class="form-control" id="result" name="result" placeholder="result"  th:field="${newschool.result}">
+                </div>
+                <div class="form-group">
+                    <label for="about">About: </label>
+                    <input type="text" class="form-control" id="about" placeholder="about"  th:field="${newschool.about}">
+
+                </div>
+                <div class="form-group">
+                    <label for="academicStaff">Academic staff: </label>
+                    <input type="text" class="form-control" id="academicStaff" name="academicStaff" placeholder="academicStaff"   th:field="${newschool.academicStaff}">
+                </div>
+                <div class="form-group">
+                    <label for="administrativeStaff">Administrative staff: </label>
+                    <input type="text" class="form-control" id="administrativeStaff" name="administrativeStaff" placeholder="administrativeStaff"   th:field="${newschool.administrativeStaff}" autofocus="autofocus">
+                </div>
+                <div class="form-group">
+                    <label for="establishedIn">Established in: </label>
+                    <input type="text" class="form-control" id="establishedIn" name="establishedIn" placeholder="establishedIn"  th:field="${newschool.establishedIn}">
+                </div>
+
+                <div class="form-group">
+                    <label for="costofGroup">Cost of group: </label>
+                    <input type="text" class="form-control" id="costofGroup" name="costofGroup" placeholder="costofGroup"  th:field="${newschool.costofGroup}">
+                </div>
+                <div class="form-group">
+                    <label for="boardingFacility">Boarding Facility: </label>
+                    <input type="text" class="form-control" id="boardingFacility" name="boardingFacility" placeholder="boardingFacility"  th:field="${newschool.boardingFacility}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exatraCurricularActivities">Extracurricular Activities: </label>
+                    <input type="text" class="form-control" id="exatraCurricularActivities" name="exatraCurricularActivities" placeholder="exatraCurricularActivities"  th:field="${newschool.exatraCurricularActivities}">
+                </div>
+                <div class="form-group">
+                    <label for="reknownedAlumni">Reknowned alumni: </label>
+                    <input type="text" class="form-control" id="reknownedAlumni" name="reknownedAlumni" placeholder="reknownedAlumni"  th:field="${newschool.reknownedAlumni}">
+                </div>
+                <div class="form-group">
+                    <label for="addmissionStartDate">Addmission Start Date: </label>
+                    <input type="text" class="form-control" id="addmissionStartDate" name="addmissionStartDate" placeholder="addmissionStartDate"  th:field="${newschool.addmissionStartDate}">
+                </div>
+
+                <div class="form-group">
+                    <label for="addmissionEndDate">Addmission End Date: </label>
+                    <input type="text" class="form-control" id="addmissionEndDate" name="addmissionEndDate" placeholder="addmissionEndDate"  th:field="${newschool.addmissionEndDate}">
+                </div>
+
+                <button type="submit" id="schoolSave" class="btn btn-success btn-sm">Save</button>
+                <a class="btn btn-info btn-sm" role="button">New</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--&lt;!&ndash;<th:block th:replace="admin/adminFooter :: footer"/>&ndash;&gt;
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="../../static/sweetalert.min.js" th:src="@{/sweetalert.min.js}"></script>
+<script>
+    $(document).ready( function () {
+        $('#example').DataTable(
+            {
+                responsive:true
+            }
+        );
+    } );
+</script>
+<script>
+    $("#schoolSave").click(function() {
+        $('#schoolForm').on('submit', function(e){
+            e.preventDefault();
+            var schoolName = $("#schoolName").val();
+            var location = $("#location").val();
+            var status = $("#status").val();
+            var totalstudents = $("#totalstudents").val();
+            var result = $("#result").val();
+            var about = $("#about").val();
+            var academicstaff = $("#academicstaff").val();
+            if (schoolName == '' || location == '' || status == '' || totalstudents == '' || result == '' || about == '' || academicstaff == ''){
+                swal({
+                    title: "Field is empty!!!",
+                    text: "Some field are missing, please fillup.",
+                    icon: "warning",
+                    button: "Try Again"
+                });
+            } else {
+                swal({
+                    title: "Succcess",
+                    text: "New school is added successfully",
+                    icon: "success",
+                    button: "Okay"
+                });
+            }
+        });
+    });
+</script>-->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
